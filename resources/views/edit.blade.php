@@ -36,7 +36,7 @@
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
                                         <input type="text" class="form-control @error('product_name') is-invalid @enderror"
-                                            name="product_name" onkeyup="createSlug()">
+                                            name="product_name" onkeyup="createSlug()" value="{{ $content->product_name}}">
                                             @error('product_name') <div class="invalid-feedback">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
                                         <input type="text" class="form-control @error('price') is-invalid @enderror"
-                                            name="price" onkeyup="createSlug()">
+                                            name="price" onkeyup="createSlug()" value="{{ $content->price}}">
                                             @error('price') <div class="invalid-feedback">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
@@ -53,16 +53,19 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Status<span>*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
-                                        <input type="text" class="form-control @error('status') is-invalid @enderror"
-                                            name="status" onkeyup="createSlug()">
+                                        <select name="status" id="" class="form-control @error('status') is-invalid @enderror">
+                                            <option value="{{ $content->status}}">{{ $content->status}}</option>
+                                            <option value="kosong">Kosong</option>
+                                            <option value="ready">Ready</option>
+                                        </select>
                                             @error('status') <div class="invalid-feedback">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Isi Blog<span>*</span>
+                                <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Description<span>*</span>
                                 </label>
                                 <div class="col-md-9 col-sm-9 ">
-                                    <textarea class="ckeditor" id="ckedtor" name="description"></textarea>
+                                    <textarea class="ckeditor" id="ckedtor" name="description">{!! $content->description !!}</textarea>
                                 </div>
                             </div>
                                 <div class="item form-group">
@@ -87,6 +90,13 @@
                 <span>Select Images</span>
                 <input type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif,"><br />
             </span>
+            <br>
+            <?php 
+                $images = json_decode($content->picture);
+            ?>
+            @foreach ($images as $image)
+                <img src="{{ asset('img/' . $image)}}" class="img-thumbnail m-3" alt="" width="150" height="100">
+            @endforeach
             <output id="Filelist"></output>
         </div>
                                 </div>

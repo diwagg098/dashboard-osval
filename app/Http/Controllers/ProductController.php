@@ -44,6 +44,10 @@ class ProductController extends Controller
             }
         }
 
+        if (count($dataImage) > 5) {
+            return redirect()->back()->with('success', 'Oops maksimal upload 5 foto');
+        }
+
 
         $data = [
             'id' => 'PR' . date('YmdHis'),
