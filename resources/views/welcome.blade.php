@@ -63,8 +63,11 @@
                                     <label class="col-form-label col-md-3 col-sm-3 label-align" for="">Status<span>*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 ">
-                                        <input type="text" class="form-control @error('status') is-invalid @enderror"
-                                            name="status" onkeyup="createSlug()">
+                                        <select name="status" id="" class="form-control @error('status') is-invalid
+                                        @enderror">
+                                            <option value="ready">Ready</option>
+                                            <option value="kosong">Kosong</option>
+                                        </select>
                                             @error('status') <div class="invalid-feedback">{{ $message }}</div>@enderror
                                     </div>
                                 </div>
